@@ -3,7 +3,29 @@
     <title>jjjj</title>
     <li><a href="{% url 'about' %}"> about </a></li>
     <br/>
-    {{ api }}
+
+    {% if ticker %}
+        {{ ticker }}
+    {% endif %}
+
+
+    {% if api %}
+        {% if api == "Error..." %}
+            There was a problem with your ticker symbol,
+            please try again...
+        {% else %}
+
+            <h1>{{ api.companyName }}</h1><br/>
+            Price: ${{ api.latestPrice }}<br/>
+            Previous close: {{ api.previousClose }}<br/>
+            Market cap: {{ api.MarketCap }}<br/>
+            YTD Change: {{ api.ytdChange }}<br/>
+            52W High{{ api.week52High }}<br/>
+
+        {% endif %}
+    {% endif %}
+
+
 
 {% endblock %}
 
