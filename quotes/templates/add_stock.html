@@ -27,15 +27,18 @@
   </thead>
   <tbody>
 {% if ticker %}
-  {% for item in ticker %}
-    <tr>
-      <th scope="row">{{ item }}</th>
-      <td>Stuff</td>
-      <td>{{ api.latestPrice }}</td>
-      <td>@mdo</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td><a href = "{% url 'delete' item.id %}" > delete stock </a></td>
+
+
+    {% for list_item in output %}
+     <tr>
+      <th scope="row">{{ list_item.companyName }}</th>
+      <td>{{ list_item.latestPrice }}</td>
+      <td>{{ list_item.previousClose }}</td>
+      <td>{{ list_item.marketCap }}</td>
+      <td>{{ list_item.ytdChange }}</td>
+      <td>{{ list_item.week52High }}</td>
+
+      <td><a href = "/" > delete stock </a></td>
     </tr>
 
   {% endfor %}
@@ -51,7 +54,13 @@
 
 <br/><br/>
 {% for list_item in output %}
-      {{ list_item.companyName }}<br/><br/>
+      {{ list_item.companyName }}<br/>
+      {{ list_item.latestPrice }}<br/>
+      {{ list_item.previousClose }}<br/>
+      {{ list_item.MarketCap }}<br/>
+      {{ list_item.ytdChange }}<br/>
+      {{ list_item.week52High }}<br/>
+      {{ list_item.week52Low }}<br/>
 {% endfor %}
 
 
