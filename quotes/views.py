@@ -28,7 +28,7 @@ def add_stock(request):
     import requests
     import json
 
-    if request.method == 'POST':
+    if request.method == 'POST': #jezeli ktos wpisze w przeglądarke wykonaj to
         form = StockForm(request.POST or None)
 
         if form.is_valid():
@@ -53,4 +53,8 @@ def delete(request, stock_id):
     item = Stock.objects.get(pk=stock_id)
     item.delete()
     messages.success(request, ("stock  " + str(item) + "has been deleted"))
-    return redirect(add_stock)
+    return redirect(delete_stock)
+
+def delete_stock(request):
+    ticker = Stock.objects.all()
+    return render(request, 'delete_stock.html', {'ticker': ticker})
